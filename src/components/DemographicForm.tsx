@@ -1,15 +1,29 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
+import React, { useState, SetStateAction, Dispatch } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
-const DemographicForm = () => {
-  const [gender, setGender] = useState<string[]>([]);
-  const [ethnicity, setEthnicity] = useState<string[]>([]);
-  const [religion, setReligion] = useState<string[]>([]);
+const DemographicForm = ({
+  gender,
+  ethnicity,
+  religion,
+  setGender,
+  setEthnicity,
+  setReligion,
+}: {
+  gender: string[];
+  ethnicity: string[];
+  religion: string[];
+  setGender: Dispatch<SetStateAction<string[]>>;
+  setEthnicity: Dispatch<SetStateAction<string[]>>;
+  setReligion: Dispatch<SetStateAction<string[]>>;
+}) => {
+  // const [gender, setGender] = useState<string[]>([]);
+  // const [ethnicity, setEthnicity] = useState<string[]>([]);
+  // const [religion, setReligion] = useState<string[]>([]);
 
   const genderOptions = ["Male", "Female", "Non-binary"];
   const ethnicityOptions = [
@@ -21,7 +35,7 @@ const DemographicForm = () => {
     "East Asians",
     "Native American/Indigenous",
     "Pacific Islander",
-    "Mixed"
+    "Mixed",
   ];
   const religionOptions = [
     "Catholic",
@@ -32,17 +46,8 @@ const DemographicForm = () => {
     "Hindu",
     "Atheist",
     "Jewish",
-    "Other"
+    "Other",
   ];
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({
-      gender,
-      ethnicity,
-      religion
-    });
-  };
 
   const handleCheckboxChange = (
     value: string,
@@ -56,12 +61,12 @@ const DemographicForm = () => {
     }
   };
 
-  const CheckboxGroup = ({ 
-    title, 
-    options, 
-    selected, 
-    setSelected 
-  }: { 
+  const CheckboxGroup = ({
+    title,
+    options,
+    selected,
+    setSelected,
+  }: {
     title: string;
     options: string[];
     selected: string[];
@@ -75,7 +80,7 @@ const DemographicForm = () => {
             <Checkbox
               id={`${title}-${option}`}
               checked={selected.includes(option)}
-              onCheckedChange={() => 
+              onCheckedChange={() =>
                 handleCheckboxChange(option, selected, setSelected)
               }
             />
@@ -92,32 +97,26 @@ const DemographicForm = () => {
         <CardTitle>Demographic Information</CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-8">
-          <CheckboxGroup
-            title="Gender"
-            options={genderOptions}
-            selected={gender}
-            setSelected={setGender}
-          />
-          
-          <CheckboxGroup
-            title="Ethnicity"
-            options={ethnicityOptions}
-            selected={ethnicity}
-            setSelected={setEthnicity}
-          />
-          
-          <CheckboxGroup
-            title="Religion"
-            options={religionOptions}
-            selected={religion}
-            setSelected={setReligion}
-          />
+        <CheckboxGroup
+          title="Gender"
+          options={genderOptions}
+          selected={gender}
+          setSelected={setGender}
+        />
 
-          <Button type="submit" className="w-full">
-            Submit
-          </Button>
-        </form>
+        <CheckboxGroup
+          title="Ethnicity"
+          options={ethnicityOptions}
+          selected={ethnicity}
+          setSelected={setEthnicity}
+        />
+
+        <CheckboxGroup
+          title="Religion"
+          options={religionOptions}
+          selected={religion}
+          setSelected={setReligion}
+        />
       </CardContent>
     </Card>
   );
