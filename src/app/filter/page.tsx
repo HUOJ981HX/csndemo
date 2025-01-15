@@ -3,24 +3,77 @@
 import DemographicForm from "@/components/DemographicForm";
 import { Button } from "@/components/ui/button";
 import React, { useState, SetStateAction } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { filter } from "@/lib/types";
+
+function getEmptyFields(fields: filter): string {
+  return Object.entries(fields)
+    .filter(([_, value]) => value.length === 0)
+    .map(([key]) => key)
+    .join(', ');
+}
 
 function FilterPage() {
   const [gender, setGender] = useState<string[]>([]);
   const [ethnicity, setEthnicity] = useState<string[]>([]);
   const [religion, setReligion] = useState<string[]>([]);
+  const [openItems, setOpenItems] = useState<string[]>([])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({
+
+    const basicFields = {
       gender,
       ethnicity,
       religion,
-    });
+    };
+  
+    const filteredFields = Object.fromEntries(
+      Object.entries(basicFields).filter(([key]) => openItems.includes(key))
+    );
+
+    console.log('sean_log filteredFields: ' + JSON.stringify(filteredFields));
+  
+    const emptyFields = getEmptyFields(filteredFields);
+
+    if(emptyFields) {
+      window.alert('Please make sure to checkbox a value in ' + emptyFields);
+      return;
+    }
+
+    console.log('vvvvvvvvvvvvvvvvvvv');
+    return {
+      basic: filteredFields
+    };
+  };
+
+  const handleSwitchChange = (name: string, checked: boolean) => {
+    // console.log(name + " " + checked);
+    // Need to add to the row of opened accordion here.
+    // if `isChecked`, and not include, then add. 
+
+    if(checked && !openItems.includes(name)) {
+      setOpenItems([...openItems, name])
+    }
+    else {
+      setOpenItems(openItems.filter(item => item !== name))
+    }
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit} className="space-y-8">
+      <Accordion 
+        type="multiple" 
+        value={openItems} 
+        onValueChange={setOpenItems}
+        className="w-full"
+      >
         <DemographicForm
           setGender={setGender}
           setEthnicity={setEthnicity}
@@ -28,7 +81,9 @@ function FilterPage() {
           gender={gender}
           ethnicity={ethnicity}
           religion={religion}
+          handleSwitchChange={handleSwitchChange}
         />
+      </Accordion>
 
         <Button type="submit" className="w-full">
           Submit

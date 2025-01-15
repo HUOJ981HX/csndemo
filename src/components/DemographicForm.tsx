@@ -3,7 +3,14 @@
 import React, { useState, SetStateAction, Dispatch } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import CheckboxGroup from "./formInputs/CheckboxGroup";
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 
 const DemographicForm = ({
   gender,
@@ -12,6 +19,7 @@ const DemographicForm = ({
   setGender,
   setEthnicity,
   setReligion,
+  handleSwitchChange,
 }: {
   gender: string[];
   ethnicity: string[];
@@ -19,6 +27,7 @@ const DemographicForm = ({
   setGender: Dispatch<SetStateAction<string[]>>;
   setEthnicity: Dispatch<SetStateAction<string[]>>;
   setReligion: Dispatch<SetStateAction<string[]>>;
+  handleSwitchChange: Function;
 }) => {
   // const [gender, setGender] = useState<string[]>([]);
   // const [ethnicity, setEthnicity] = useState<string[]>([]);
@@ -51,30 +60,66 @@ const DemographicForm = ({
   return (
     <Card className="w-full max-w-4xl mx-auto">
       <CardHeader>
-        <CardTitle>Demographic Information</CardTitle>
+        <CardTitle>Basic</CardTitle>
       </CardHeader>
       <CardContent>
-        <CheckboxGroup
-          title="Gender"
-          options={genderOptions}
-          selected={gender}
-          setSelected={setGender}
-        />
+        <AccordionItem value="gender">
+          <Switch
+            id="gender"
+            onCheckedChange={(isChecked) =>
+              handleSwitchChange("gender", isChecked)
+            }
+          />
+          <Label htmlFor="gender">Gender</Label>
+          <AccordionContent>
+            <CheckboxGroup
+              title="Gender"
+              options={genderOptions}
+              selected={gender}
+              setSelected={setGender}
+            />
+          </AccordionContent>
+        </AccordionItem>
 
-        <CheckboxGroup
-          title="Ethnicity"
-          options={ethnicityOptions}
-          selected={ethnicity}
-          setSelected={setEthnicity}
-        />
+        <AccordionItem value="ethnicity">
+          <Switch
+            id="ethnicity"
+            onCheckedChange={(isChecked) =>
+              handleSwitchChange("ethnicity", isChecked)
+            }
+          />
+          <Label htmlFor="ethnicity">Ethnicity</Label>
+          <AccordionContent>
+            <CheckboxGroup
+              title="Ethnicity"
+              options={ethnicityOptions}
+              selected={ethnicity}
+              setSelected={setEthnicity}
+            />
+          </AccordionContent>
+        </AccordionItem>
 
-        <CheckboxGroup
-          title="Religion"
-          options={religionOptions}
-          selected={religion}
-          setSelected={setReligion}
-        />
+        <AccordionItem value="religion">
+          <Switch
+            id="religion"
+            onCheckedChange={(isChecked) =>
+              handleSwitchChange("religion", isChecked)
+            }
+          />
+          <Label htmlFor="religion">Religion</Label>
+          <AccordionContent>
+            <CheckboxGroup
+              title="Religion"
+              options={religionOptions}
+              selected={religion}
+              setSelected={setReligion}
+            />
+          </AccordionContent>
+        </AccordionItem>
       </CardContent>
+      <CardHeader>
+        <CardTitle>Badsic</CardTitle>
+      </CardHeader>
     </Card>
   );
 };
