@@ -3,9 +3,7 @@
 import DemographicForm from "@/components/DemographicForm";
 import { Button } from "@/components/ui/button";
 import React, { useState, SetStateAction } from "react";
-import {
-  Accordion,
-} from "@/components/ui/accordion";
+import { Accordion } from "@/components/ui/accordion";
 import { filterFields } from "@/lib/types";
 import { Card } from "@/components/ui/card";
 import PurposeForm from "@/components/PurposeForm";
@@ -23,6 +21,9 @@ function Filter() {
   const [religion, setReligion] = useState<string[]>([]);
   const [openItems, setOpenItems] = useState<string[]>([]);
   const [work, setWork] = useState<string[]>([]);
+  const [relation, setRelation] = useState<string[]>([]);
+  const [help, setHelp] = useState<string[]>([]);
+  const [other, setOther] = useState<string[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,11 +32,14 @@ function Filter() {
       gender,
       ethnicity,
       religion,
-      work
+      work,
+      relation,
+      help,
+      other,
     };
 
-    console.log('bbbbbbbbbbbbbbbbbb');
-    console.log('sean_log basicFields: ' + JSON.stringify(basicFields));
+    console.log("bbbbbbbbbbbbbbbbbb");
+    console.log("sean_log basicFields: " + JSON.stringify(basicFields));
 
     const filteredFields = Object.fromEntries(
       Object.entries(basicFields).filter(([key]) => openItems.includes(key))
@@ -90,6 +94,12 @@ function Filter() {
 
             <PurposeForm
               setWork={setWork}
+              relation={relation}
+              setRelation={setRelation}
+              setHelp={setHelp}
+              help={help}
+              other={other}
+              setOther={setOther}
               handleSwitchChange={handleSwitchChange}
             />
           </Accordion>
