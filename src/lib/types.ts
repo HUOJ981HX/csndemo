@@ -8,6 +8,7 @@ export interface filterFields {
   relation?: string[];
   help?: string[];
   other?: string[];
+  age?: number[];
 }
 
 export interface userObj {
@@ -18,4 +19,5 @@ export interface userObj {
   relation?: string;
   help?: boolean;
   other?: boolean;
+  age?: number;
 }

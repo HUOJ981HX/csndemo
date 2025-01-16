@@ -16,6 +16,8 @@ export default function Home() {
   const [help, setHelp] = useState<string[]>([]);
   const [other, setOther] = useState<string[]>([]);
   const [openItems, setOpenItems] = useState<string[]>([]);
+  const [minAge, setMinAge] = useState(18);
+  const [maxAge, setMaxAge] = useState(100);
 
   return (
     <>
@@ -28,7 +30,7 @@ export default function Home() {
 
       </div>
       <BaseDialog isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
-        <Filter gender={gender} setGender={setGender} ethnicity={ethnicity} setEthnicity={setEthnicity} religion={religion} setReligion={setReligion} work={work} setWork={setWork} relation={relation} setRelation={setRelation} help={help} setHelp={setHelp} other={other} setOther={setOther} openItems={openItems} setOpenItems={setOpenItems} />
+        <Filter gender={gender} setGender={setGender} ethnicity={ethnicity} setEthnicity={setEthnicity} religion={religion} setReligion={setReligion} work={work} setWork={setWork} relation={relation} setRelation={setRelation} help={help} setHelp={setHelp} other={other} setOther={setOther} openItems={openItems} setOpenItems={setOpenItems} minAge={minAge} setMinAge={setMinAge} maxAge={maxAge} setMaxAge={setMaxAge} />
       </BaseDialog>
     </>
   );

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
 
 const DemographicForm = ({
   gender,
@@ -21,6 +22,10 @@ const DemographicForm = ({
   setReligion,
   handleSwitchChange,
   openItems,
+  minAge,
+  setMinAge,
+  maxAge,
+  setMaxAge,
 }: {
   gender: string[];
   ethnicity: string[];
@@ -29,7 +34,11 @@ const DemographicForm = ({
   setEthnicity: Dispatch<SetStateAction<string[]>>;
   setReligion: Dispatch<SetStateAction<string[]>>;
   handleSwitchChange: Function;
-  openItems: string[]
+  openItems: string[];
+  minAge: number;
+  setMinAge: Dispatch<SetStateAction<number>>;
+  maxAge: number;
+  setMaxAge: Dispatch<SetStateAction<number>>;
 }) => {
   // const [gender, setGender] = useState<string[]>([]);
   // const [ethnicity, setEthnicity] = useState<string[]>([]);
@@ -65,6 +74,27 @@ const DemographicForm = ({
         <CardTitle>Basic</CardTitle>
       </CardHeader>
       <CardContent>
+        <AccordionItem value="age">
+          <Switch
+            id="age"
+            onCheckedChange={(isChecked) =>
+              handleSwitchChange("age", isChecked)
+            }
+            checked={openItems.includes("age")}
+          />
+          <Label htmlFor="age">Age</Label>
+          <AccordionContent>
+            <MultiRangeSlider
+              min={18}
+              max={100}
+              setMinVal={setMinAge}
+              setMaxVal={setMaxAge}
+              minVal={minAge}
+              maxVal={maxAge}
+            />
+          </AccordionContent>
+        </AccordionItem>
+
         <AccordionItem value="gender">
           <Switch
             id="gender"

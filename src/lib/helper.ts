@@ -44,6 +44,10 @@ export const createUser = (filter: filterFields) => {
     userObj.other = !!filter.other.length;
   }
 
+  if(filter.age) {
+
+  }
+  
   return userObj;
 };
 

@@ -32,6 +32,10 @@ function Filter({
   setOther,
   openItems,
   setOpenItems,
+  minAge,
+  setMinAge,
+  maxAge,
+  setMaxAge,
 }: any) {
   // const [gender, setGender] = useState<string[]>([]);
   // const [ethnicity, setEthnicity] = useState<string[]>([]);
@@ -57,6 +61,7 @@ function Filter({
       relation,
       help,
       other,
+      age: [minAge, maxAge]
     };
 
     console.log("bbbbbbbbbbbbbbbbbb");
@@ -112,6 +117,10 @@ function Filter({
               religion={religion}
               handleSwitchChange={handleSwitchChange}
               openItems={openItems}
+              minAge={minAge}
+              setMinAge={setMinAge}
+              maxAge={maxAge}
+              setMaxAge={setMaxAge}
             />
 
             <PurposeForm
