@@ -44,10 +44,12 @@ export const createUser = (filter: filterFields) => {
     userObj.other = !!filter.other.length;
   }
 
-  if(filter.age) {
-
+  if (filter.age) {
+    userObj.age = Math.floor(
+      Math.random() * (filter.age[0] - filter.age[1] + 1) + filter.age[0]
+    );
   }
-  
+
   return userObj;
 };
 
