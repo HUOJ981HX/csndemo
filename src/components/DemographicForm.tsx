@@ -20,6 +20,7 @@ const DemographicForm = ({
   setEthnicity,
   setReligion,
   handleSwitchChange,
+  openItems,
 }: {
   gender: string[];
   ethnicity: string[];
@@ -28,6 +29,7 @@ const DemographicForm = ({
   setEthnicity: Dispatch<SetStateAction<string[]>>;
   setReligion: Dispatch<SetStateAction<string[]>>;
   handleSwitchChange: Function;
+  openItems: string[]
 }) => {
   // const [gender, setGender] = useState<string[]>([]);
   // const [ethnicity, setEthnicity] = useState<string[]>([]);
@@ -69,6 +71,7 @@ const DemographicForm = ({
             onCheckedChange={(isChecked) =>
               handleSwitchChange("gender", isChecked)
             }
+            checked={openItems.includes("gender")}
           />
           <Label htmlFor="gender">Gender</Label>
           <AccordionContent>
@@ -87,6 +90,7 @@ const DemographicForm = ({
             onCheckedChange={(isChecked) =>
               handleSwitchChange("ethnicity", isChecked)
             }
+            checked={openItems.includes("ethnicity")}
           />
           <Label htmlFor="ethnicity">Ethnicity</Label>
           <AccordionContent>
@@ -105,6 +109,7 @@ const DemographicForm = ({
             onCheckedChange={(isChecked) =>
               handleSwitchChange("religion", isChecked)
             }
+            checked={openItems.includes("religion")}
           />
           <Label htmlFor="religion">Religion</Label>
           <AccordionContent>

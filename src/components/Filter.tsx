@@ -15,15 +15,36 @@ function getEmptyFields(fields: filterFields): string {
     .join(", ");
 }
 
-function Filter() {
-  const [gender, setGender] = useState<string[]>([]);
-  const [ethnicity, setEthnicity] = useState<string[]>([]);
-  const [religion, setReligion] = useState<string[]>([]);
-  const [openItems, setOpenItems] = useState<string[]>([]);
-  const [work, setWork] = useState<string[]>([]);
-  const [relation, setRelation] = useState<string[]>([]);
-  const [help, setHelp] = useState<string[]>([]);
-  const [other, setOther] = useState<string[]>([]);
+function Filter({
+  gender,
+  setGender,
+  ethnicity,
+  setEthnicity,
+  religion,
+  setReligion,
+  work,
+  setWork,
+  relation,
+  setRelation,
+  help,
+  setHelp,
+  other,
+  setOther,
+  openItems,
+  setOpenItems,
+}: any) {
+  // const [gender, setGender] = useState<string[]>([]);
+  // const [ethnicity, setEthnicity] = useState<string[]>([]);
+  // const [religion, setReligion] = useState<string[]>([]);
+  // const [openItems, setOpenItems] = useState<string[]>([]);
+  // const [work, setWork] = useState<string[]>([]);
+  // const [relation, setRelation] = useState<string[]>([]);
+  // const [help, setHelp] = useState<string[]>([]);
+  // const [other, setOther] = useState<string[]>([]);
+
+  console.log("fffffffffffffffffffffff");
+  console.log("fffffffffffffffffffffff");
+  console.log("sean_log work: " + JSON.stringify(work));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,7 +89,7 @@ function Filter() {
     if (checked && !openItems.includes(name)) {
       setOpenItems([...openItems, name]);
     } else {
-      setOpenItems(openItems.filter((item) => item !== name));
+      setOpenItems(openItems.filter((item: string) => item !== name));
     }
   };
 
@@ -90,6 +111,7 @@ function Filter() {
               ethnicity={ethnicity}
               religion={religion}
               handleSwitchChange={handleSwitchChange}
+              openItems={openItems}
             />
 
             <PurposeForm
@@ -101,6 +123,7 @@ function Filter() {
               other={other}
               setOther={setOther}
               handleSwitchChange={handleSwitchChange}
+              openItems={openItems}
             />
           </Accordion>
 

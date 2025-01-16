@@ -24,6 +24,7 @@ const PurposeForm = ({
   help,
   other,
   setOther,
+  openItems,
 }: {
   setWork: Dispatch<SetStateAction<string[]>>;
   handleSwitchChange: Function;
@@ -33,30 +34,8 @@ const PurposeForm = ({
   help: string[];
   setOther: Dispatch<SetStateAction<string[]>>;
   other: string[];
+  openItems: string[];
 }) => {
-  const genderOptions = ["Male", "Female", "Non-binary"];
-  const ethnicityOptions = [
-    "White/Caucasians",
-    "Black/African",
-    "Middle Eastern",
-    "South Asian",
-    "Southeast Asians",
-    "East Asians",
-    "Native American/Indigenous",
-    "Pacific Islander",
-    "Mixed",
-  ];
-  const religionOptions = [
-    "Catholic",
-    "Protestant",
-    "Orthodox",
-    "Muslim",
-    "Buddhist",
-    "Hindu",
-    "Atheist",
-    "Jewish",
-    "Other",
-  ];
 
   return (
     <>
@@ -70,14 +49,13 @@ const PurposeForm = ({
             onCheckedChange={(isChecked) =>
               handleSwitchChange("work", isChecked)
             }
+            checked={openItems.includes("work")}
           />
           <Label htmlFor="work">Paid work/job</Label>
           <AccordionContent>
             <RadioGroup
-              defaultValue="comfortable"
+              defaultValue="Seeking"
               onValueChange={(value) => {
-                console.log("sssssssssssssssssssssssss");
-                console.log("sean_log value: " + value);
                 setWork([value]);
               }}
             >
@@ -99,8 +77,9 @@ const PurposeForm = ({
             onCheckedChange={(isChecked) =>
               handleSwitchChange("relation", isChecked)
             }
+            checked={openItems.includes("relation")}
           />
-          <Label htmlFor="gender">Relation</Label>
+          <Label htmlFor="relation">Relation</Label>
           <AccordionContent>
             <CheckboxGroup
               title="relation"
@@ -118,6 +97,7 @@ const PurposeForm = ({
               handleSwitchChange("help", isChecked);
               setHelp(["help"]);
             }}
+            checked={openItems.includes("help")}
           />
           <Label htmlFor="help">Help</Label>
         </div>
@@ -129,6 +109,7 @@ const PurposeForm = ({
               handleSwitchChange("other", isChecked);
               setOther(["other"]);
             }}
+            checked={openItems.includes("other")}
           />
           <Label htmlFor="other">Other</Label>
         </div>
