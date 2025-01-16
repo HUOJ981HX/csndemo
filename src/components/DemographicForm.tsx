@@ -58,7 +58,7 @@ const DemographicForm = ({
   ];
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
+    <>
       <CardHeader>
         <CardTitle>Basic</CardTitle>
       </CardHeader>
@@ -117,10 +117,7 @@ const DemographicForm = ({
           </AccordionContent>
         </AccordionItem>
       </CardContent>
-      <CardHeader>
-        <CardTitle>Badsic</CardTitle>
-      </CardHeader>
-    </Card>
+    </>
   );
 };
 
