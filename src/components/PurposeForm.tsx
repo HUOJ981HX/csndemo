@@ -12,8 +12,9 @@ import {
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
+import { userRelations, userWorkValues } from "@/lib/constant";
 
-const relationOptions = ["Shorterm", "Longterm", "Casual"];
+const relationOptions: userRelations[] = [userRelations.Shorterm, userRelations.Longterm, userRelations.Casual];
 
 const PurposeForm = ({
   setWork,
@@ -60,11 +61,11 @@ const PurposeForm = ({
               }}
             >
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="Seeking" id="Seeking" />
+                <RadioGroupItem value={userWorkValues.Seeking} id="Seeking" />
                 <Label htmlFor="Seeking">Seeking</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="Offering" id="Offering" />
+                <RadioGroupItem value={userWorkValues.Offering} id="Offering" />
                 <Label htmlFor="Offering">Offering</Label>
               </div>
             </RadioGroup>
