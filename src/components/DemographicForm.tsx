@@ -26,6 +26,7 @@ const DemographicForm = ({
   setMinAge,
   maxAge,
   setMaxAge,
+
 }: {
   gender: string[];
   ethnicity: string[];
@@ -39,6 +40,7 @@ const DemographicForm = ({
   setMinAge: Dispatch<SetStateAction<number>>;
   maxAge: number;
   setMaxAge: Dispatch<SetStateAction<number>>;
+
 }) => {
   // const [gender, setGender] = useState<string[]>([]);
   // const [ethnicity, setEthnicity] = useState<string[]>([]);
@@ -77,8 +79,10 @@ const DemographicForm = ({
         <AccordionItem value="age">
           <Switch
             id="age"
-            onCheckedChange={(isChecked) =>
-              handleSwitchChange("age", isChecked)
+            onCheckedChange={(isChecked) => {
+              handleSwitchChange("age", isChecked);
+              // setProgrammaticToggle(true);
+            }
             }
             checked={openItems.includes("age")}
           />

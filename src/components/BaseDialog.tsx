@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, SetStateAction, Dispatch, ReactNode } from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 function BaseDialog({
   children,
@@ -15,6 +15,7 @@ function BaseDialog({
   // return <>{children}</>;
   return (
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <DialogTitle></DialogTitle>
       <DialogContent>{children}</DialogContent>
     </Dialog>
   );

@@ -2,11 +2,13 @@
 
 import DemographicForm from "@/components/DemographicForm";
 import { Button } from "@/components/ui/button";
-import React, { useState, SetStateAction } from "react";
+import React, { useState, useEffect } from "react";
 import { Accordion } from "@/components/ui/accordion";
 import { filterFields } from "@/lib/types";
 import { Card } from "@/components/ui/card";
 import PurposeForm from "@/components/PurposeForm";
+import { Switch } from "./ui/switch";
+import { ControlledSwitch } from "./ControlledSwitch";
 
 function getEmptyFields(fields: filterFields): string {
   return Object.entries(fields)
@@ -46,9 +48,23 @@ function Filter({
   // const [help, setHelp] = useState<string[]>([]);
   // const [other, setOther] = useState<string[]>([]);
 
-  console.log("fffffffffffffffffffffff");
-  console.log("fffffffffffffffffffffff");
-  console.log("sean_log work: " + JSON.stringify(work));
+  const [programmaticToggle, setProgrammaticToggle] = useState(false);
+
+
+
+  useEffect(() => {
+    console.log("fffffffffffffffffffffff");
+    console.log("fffffffffffffffffffffff");
+    console.log("sean_log openItems: " + JSON.stringify(openItems));
+    if(openItems.length) {
+      setProgrammaticToggle(true);
+    }
+    else {
+      setProgrammaticToggle(false);
+    }
+
+  }, [openItems, setProgrammaticToggle])
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,7 +77,7 @@ function Filter({
       relation,
       help,
       other,
-      age: [minAge, maxAge]
+      age: [minAge, maxAge],
     };
 
     console.log("bbbbbbbbbbbbbbbbbb");
@@ -101,6 +117,7 @@ function Filter({
   return (
     <div>
       <form onSubmit={handleSubmit} className="space-y-8">
+        <ControlledSwitch openItems={openItems} setOpenItems={setOpenItems} programmaticToggle={programmaticToggle}/>
         <Card className="w-full max-w-4xl mx-auto">
           <Accordion
             type="multiple"
@@ -137,7 +154,7 @@ function Filter({
           </Accordion>
 
           <Button type="submit" className="w-full">
-            Submit
+            Done
           </Button>
         </Card>
       </form>
