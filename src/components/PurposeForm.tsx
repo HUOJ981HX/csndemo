@@ -14,10 +14,10 @@ import { Switch } from "@/components/ui/switch";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 
 const PurposeForm = ({
-  setWorkPurpose,
+  setWork,
   handleSwitchChange,
 }: {
-  setWorkPurpose: Dispatch<SetStateAction<string[]>>;
+  setWork: Dispatch<SetStateAction<string[]>>;
   handleSwitchChange: Function;
 }) => {
   const genderOptions = ["Male", "Female", "Non-binary"];
@@ -62,15 +62,17 @@ const PurposeForm = ({
             <RadioGroup
               defaultValue="comfortable"
               onValueChange={(value) => {
-                setWorkPurpose([value]);
+                console.log('sssssssssssssssssssssssss');
+                console.log('sean_log value: ' + value);
+                setWork([value]);
               }}
             >
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="comfortable" id="Seeking" />
+                <RadioGroupItem value="Seeking" id="Seeking" />
                 <Label htmlFor="Seeking">Seeking</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="compact" id="Offering" />
+                <RadioGroupItem value="Offering" id="Offering" />
                 <Label htmlFor="Offering">Offering</Label>
               </div>
             </RadioGroup>

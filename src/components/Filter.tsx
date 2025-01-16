@@ -5,27 +5,24 @@ import { Button } from "@/components/ui/button";
 import React, { useState, SetStateAction } from "react";
 import {
   Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
 } from "@/components/ui/accordion";
-import { filter } from "@/lib/types";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { filterFields } from "@/lib/types";
+import { Card } from "@/components/ui/card";
 import PurposeForm from "@/components/PurposeForm";
 
-function getEmptyFields(fields: filter): string {
+function getEmptyFields(fields: filterFields): string {
   return Object.entries(fields)
     .filter(([_, value]) => value.length === 0)
     .map(([key]) => key)
     .join(", ");
 }
 
-function FilterPage() {
+function Filter() {
   const [gender, setGender] = useState<string[]>([]);
   const [ethnicity, setEthnicity] = useState<string[]>([]);
   const [religion, setReligion] = useState<string[]>([]);
   const [openItems, setOpenItems] = useState<string[]>([]);
-  const [workPurpose, setWorkPurpose] = useState<string[]>([]);
+  const [work, setWork] = useState<string[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +31,11 @@ function FilterPage() {
       gender,
       ethnicity,
       religion,
+      work
     };
+
+    console.log('bbbbbbbbbbbbbbbbbb');
+    console.log('sean_log basicFields: ' + JSON.stringify(basicFields));
 
     const filteredFields = Object.fromEntries(
       Object.entries(basicFields).filter(([key]) => openItems.includes(key))
@@ -88,7 +89,7 @@ function FilterPage() {
             />
 
             <PurposeForm
-              setWorkPurpose={setWorkPurpose}
+              setWork={setWork}
               handleSwitchChange={handleSwitchChange}
             />
           </Accordion>
@@ -102,4 +103,4 @@ function FilterPage() {
   );
 }
 
-export default FilterPage;
+export default Filter;

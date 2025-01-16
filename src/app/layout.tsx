@@ -28,10 +28,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <nav>
+        {/* <nav>
           <Link href={"/filter"}>Filter</Link>
           <Link href={"/chat"}>Chat</Link>
-        </nav>
+        </nav> */}
         {children}
       </body>
     </html>
