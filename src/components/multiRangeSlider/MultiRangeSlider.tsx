@@ -1,7 +1,14 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import "./multiRangeSlider.css";
 
-const MultiRangeSlider = ({ min, max, setMinVal, minVal, maxVal,  setMaxVal }: any) => {
+const MultiRangeSlider = ({
+  min,
+  max,
+  setMinVal,
+  minVal,
+  maxVal,
+  setMaxVal,
+}: any) => {
   // const [minVal, setMinVal] = useState(min);
   // const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
@@ -42,46 +49,43 @@ const MultiRangeSlider = ({ min, max, setMinVal, minVal, maxVal,  setMaxVal }: a
 
   return (
     <div>
-      <p>Age</p>
-    <div className="container">
-      <input
-        type="range"
-        min={min}
-        max={max}
-        value={minVal}
-        onChange={(event) => {
-          const value = Math.min(Number(event.target.value), maxVal - 1);
-          setMinVal(value);
-          minValRef.current = value;
-        }}
-        className="thumb thumb--left"
-        // style={{ zIndex: minVal > max - 100 && "5" }}
-        style={{ zIndex: minVal > max - 100 ? "5" : undefined }}
-      />
-      <input
-        type="range"
-        min={min}
-        max={max}
-        value={maxVal}
-        onChange={(event) => {
-          const value = Math.max(Number(event.target.value), minVal + 1);
-          setMaxVal(value);
-          maxValRef.current = value;
-        }}
-        className="thumb thumb--right"
-      />
+      <div className="container">
+        <input
+          type="range"
+          min={min}
+          max={max}
+          value={minVal}
+          onChange={(event) => {
+            const value = Math.min(Number(event.target.value), maxVal - 1);
+            setMinVal(value);
+            minValRef.current = value;
+          }}
+          className="thumb thumb--left"
+          // style={{ zIndex: minVal > max - 100 && "5" }}
+          style={{ zIndex: minVal > max - 100 ? "5" : undefined }}
+        />
+        <input
+          type="range"
+          min={min}
+          max={max}
+          value={maxVal}
+          onChange={(event) => {
+            const value = Math.max(Number(event.target.value), minVal + 1);
+            setMaxVal(value);
+            maxValRef.current = value;
+          }}
+          className="thumb thumb--right"
+        />
 
-      <div className="slider">
-        <div className="slider__track" />
-        <div ref={range} className="slider__range" />
-        <div className="slider__left-value">{minVal}</div>
-        <div className="slider__right-value">{maxVal}</div>
+        <div className="slider">
+          <div className="slider__track" />
+          {/* <div ref={range} className="slider__range" /> */}
+          <div className="slider__left-value">{minVal}</div>
+          <div className="slider__right-value">{maxVal}</div>
+        </div>
       </div>
     </div>
-    </div>
-
   );
 };
-
 
 export default MultiRangeSlider;
